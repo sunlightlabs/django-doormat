@@ -43,6 +43,7 @@ class DoorMatMiddleware(object):
     
             # we made it through the tests so lets find a doormat
             request.doormat = DoorMat.objects.find_one(url_parts.netloc, url_parts.path)
-            request.session['has_seen_doormat'] = True
+            if request.doormat:
+                request.session['has_seen_doormat'] = True
 
         
